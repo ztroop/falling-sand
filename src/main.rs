@@ -38,12 +38,12 @@ fn spawn_sand_particles_system(
 
             // Random offset for spawning adjacent particles
             let offset_x = if rng.gen_bool(0.5) {
-                rng.gen_range(-10..=10) as f32
+                rng.gen_range(-20..=20) as f32
             } else {
                 0.0
             };
             let offset_y = if rng.gen_bool(0.5) {
-                rng.gen_range(-10..=10) as f32
+                rng.gen_range(-20..=20) as f32
             } else {
                 0.0
             };
@@ -74,7 +74,7 @@ fn sand_physics_system(
 ) {
     let ground_level = -300.0; // Define the ground level
     let mut occupied_positions: HashMap<(i32, i32), Entity> = HashMap::new();
-    let collapse_height = 20; // Define the height at which columns should collapse
+    let collapse_height = 10; // Define the height at which columns should collapse
 
     // Step 1: Update positions and track heights
     for (entity, mut transform, _, _) in query.iter_mut() {
@@ -88,7 +88,7 @@ fn sand_physics_system(
             occupied_positions.insert((grid_x, grid_y), entity);
         } else {
             // Particle falls
-            transform.translation.y -= 5.0;
+            transform.translation.y -= 6.0;
         }
     }
 
